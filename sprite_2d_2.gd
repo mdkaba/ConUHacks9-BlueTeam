@@ -1,12 +1,8 @@
 extends Sprite2D
 
-var angular_speed = PI * 1.2
+var angular_speed = PI
 
 var screen_size
-var dash_cooldown: float = 2
-var current_dash_cooldown: float = 0
-var dash_duration: float = 0.07
-var current_dash_duration: float = 0
 
 @export var health = 100
 
@@ -16,32 +12,22 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	
 func _process(delta: float) -> void:
-	process_dash(delta)
-		
-	var speed = 800
-	if(current_dash_duration > 0):
-		speed = 3500
+	var speed = 300
 	var direction = 0
-	if Input.is_key_pressed(KEY_D):
+	if Input.is_key_pressed(KEY_RIGHT):
 		direction = 1
-	if Input.is_key_pressed(KEY_A):
+	if Input.is_key_pressed(KEY_LEFT):
 		direction = -1
 		
 	rotation += angular_speed * delta * direction
 	
 	var velocity = Vector2.ZERO
-	
-	if Input.is_key_pressed(KEY_W):
+	if Input.is_key_pressed(KEY_ENTER):
+		speed = 800
+	if Input.is_key_pressed(KEY_UP):
 		velocity = Vector2.UP.rotated(rotation) * speed
-
-	if Input.is_key_pressed(KEY_S):
+	if Input.is_key_pressed(KEY_DOWN):
 		velocity = Vector2.DOWN.rotated(rotation) * speed * 0.5
-
-	if Input.is_key_pressed(KEY_SPACE):
-			if(current_dash_cooldown == 0):
-				current_dash_cooldown = dash_cooldown
-				current_dash_duration = dash_duration
-
 	position += velocity * delta
 	var screen_size = get_viewport_rect().size  # Get screen width & height
 	var sprite_pos = global_position  # Sprite's world position
@@ -55,19 +41,4 @@ func _process(delta: float) -> void:
 		flip_h = true
 	else:
 		flip_h = false
-	
-func process_dash(delta: float) -> void:
-	if (current_dash_duration > 0):
-		current_dash_duration -= delta
-		if(current_dash_duration < 0):
-			current_dash_duration = 0
-		return
-		
-	if(current_dash_cooldown > 0):
-		current_dash_cooldown -= delta
-		if(current_dash_cooldown < 0):
-			current_dash_cooldown = 0
-		print(current_dash_cooldown)
-	
-
 	
