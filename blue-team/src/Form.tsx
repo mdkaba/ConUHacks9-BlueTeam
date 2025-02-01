@@ -19,12 +19,12 @@ export default function StudentForm() {
 
           <div className="form-group">
             <label htmlFor="cost">Cost per Credit ($)</label>
-            <input type="number" id="cost" className="form-input" />
+            <input type="number" id="cost" className="form-input" step=".01"/>
           </div>
 
           <div className="form-group">
             <label htmlFor="liquidity">Total Available Liquidity ($)</label>
-            <input type="number" id="liquidity" className="form-input" />
+            <input type="number" id="liquidity" className="form-input" step=".01"/>
           </div>
 
           <button type="submit" className="submit-button">Submit</button>
