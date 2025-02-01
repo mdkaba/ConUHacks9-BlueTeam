@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_goryi"]
 size = Vector2(50, 124)
 
-[node name="Sprite2D" type="Sprite2D"]
+[node name="Ship" type="Sprite2D"]
 position = Vector2(334, 156)
 texture = ExtResource("1_8ot41")
 script = ExtResource("2_lt72e")
