@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8soi45hpvo6t"]
+
+[ext_resource type="Texture2D" uid="uid://b61loa27s3neg" path="res://ship5.png" id="1_cmn5e"]
+[ext_resource type="Script" path="res://sprite_2d_2.gd" id="2_e6xxs"]
+[ext_resource type="Script" path="res://label.gd" id="3_vyajm"]
+[ext_resource type="Script" path="res://area_2d.gd" id="4_jsoj2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_goryi"]
+size = Vector2(50, 124)
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(334, 156)
+texture = ExtResource("1_cmn5e")
+script = ExtResource("2_e6xxs")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_vyajm")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("4_jsoj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, -4)
+shape = SubResource("RectangleShape2D_goryi")
+debug_color = Color(0, 0.604876, 0.670984, 0.42)

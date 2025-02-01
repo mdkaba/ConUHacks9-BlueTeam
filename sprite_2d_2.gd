@@ -14,19 +14,19 @@ func _ready():
 func _process(delta: float) -> void:
 	var speed = 300
 	var direction = 0
-	if Input.is_key_pressed(KEY_D):
+	if Input.is_key_pressed(KEY_RIGHT):
 		direction = 1
-	if Input.is_key_pressed(KEY_A):
+	if Input.is_key_pressed(KEY_LEFT):
 		direction = -1
 		
 	rotation += angular_speed * delta * direction
 	
 	var velocity = Vector2.ZERO
-	if Input.is_key_pressed(KEY_SPACE):
+	if Input.is_key_pressed(KEY_ENTER):
 		speed = 800
-	if Input.is_key_pressed(KEY_W):
+	if Input.is_key_pressed(KEY_UP):
 		velocity = Vector2.UP.rotated(rotation) * speed
-	if Input.is_key_pressed(KEY_S):
+	if Input.is_key_pressed(KEY_DOWN):
 		velocity = Vector2.DOWN.rotated(rotation) * speed * 0.5
 	position += velocity * delta
 	var screen_size = get_viewport_rect().size  # Get screen width & height
