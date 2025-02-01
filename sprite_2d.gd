@@ -1,18 +1,22 @@
 extends Sprite2D
 
-var angular_speed = PI
+var angular_speed = PI * 1.2
+
+var screen_size
 var dash_cooldown: float = 2
 var current_dash_cooldown: float = 0
-var dash_duration: float = 0.1
+var dash_duration: float = 0.07
 var current_dash_duration: float = 0
 
 func _init() -> void:
 	print("Started")
+func _ready():
+	screen_size = get_viewport_rect().size
 	
 func _process(delta: float) -> void:
 	process_dash(delta)
 		
-	var speed = 1000
+	var speed = 800
 	if(current_dash_duration > 0):
 		speed = 3500
 	var direction = 0
@@ -32,6 +36,7 @@ func _process(delta: float) -> void:
 				current_dash_cooldown = dash_cooldown
 				current_dash_duration = dash_duration
 	position += velocity * delta
+	position = position.clamp(Vector2.ZERO, screen_size)
 	
 	
 	
